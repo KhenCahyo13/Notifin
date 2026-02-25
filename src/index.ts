@@ -10,4 +10,4 @@ export type {
     NotifinType,
     NotifinUpdateOptions,
 } from './core/types';
-export { Notifin } from './react/notifin';
+export { Notifin } from './provider/notifin';

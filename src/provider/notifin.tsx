@@ -10,93 +10,7 @@ import type {
 } from '../core/types';
 import { useNotifinStore } from '../core/use-notifin';
 import { cn } from '../core/utils';
-
-function IconCheckCircle({ className }: { className?: string }) {
-    return (
-        <svg
-            className={className}
-            fill="none"
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            viewBox="0 0 24 24"
-        >
-            <circle cx="12" cy="12" r="10" />
-            <path d="m9 12 2 2 4-4" />
-        </svg>
-    );
-}
-
-function IconCircleAlert({ className }: { className?: string }) {
-    return (
-        <svg
-            className={className}
-            fill="none"
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            viewBox="0 0 24 24"
-        >
-            <circle cx="12" cy="12" r="10" />
-            <line x1="12" x2="12" y1="8" y2="12" />
-            <line x1="12" x2="12.01" y1="16" y2="16" />
-        </svg>
-    );
-}
-
-function IconCircleX({ className }: { className?: string }) {
-    return (
-        <svg
-            className={className}
-            fill="none"
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            viewBox="0 0 24 24"
-        >
-            <circle cx="12" cy="12" r="10" />
-            <path d="m15 9-6 6" />
-            <path d="m9 9 6 6" />
-        </svg>
-    );
-}
-
-function IconInfo({ className }: { className?: string }) {
-    return (
-        <svg
-            className={className}
-            fill="none"
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            viewBox="0 0 24 24"
-        >
-            <circle cx="12" cy="12" r="10" />
-            <path d="M12 16v-4" />
-            <path d="M12 8h.01" />
-        </svg>
-    );
-}
-
-function IconLoader({ className }: { className?: string }) {
-    return (
-        <svg
-            className={className}
-            fill="none"
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            viewBox="0 0 24 24"
-        >
-            <path d="M21 12a9 9 0 1 1-6.219-8.56" />
-        </svg>
-    );
-}
+import { IconCheckCircle, IconCircleAlert, IconCircleX, IconInfo, IconLoader } from './icons';
 
 const defaultIcons: NotifinThemeIcons = {
     default: IconInfo,
@@ -255,16 +169,16 @@ function DialogBody({
                                         'inline-flex h-8 w-full items-center justify-center rounded-md px-4 text-sm font-medium text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 sm:w-auto sm:min-w-24',
                                         'disabled:cursor-not-allowed disabled:opacity-60',
                                         dialog.type === 'error' &&
-                                            'bg-red-600 hover:bg-red-700',
+                                        'bg-red-600 hover:bg-red-700',
                                         dialog.type === 'info' &&
-                                            'bg-blue-600 hover:bg-blue-700',
+                                        'bg-blue-600 hover:bg-blue-700',
                                         dialog.type === 'success' &&
-                                            'bg-green-600 hover:bg-green-700',
+                                        'bg-green-600 hover:bg-green-700',
                                         dialog.type === 'warning' &&
-                                            'bg-yellow-600 hover:bg-yellow-700',
+                                        'bg-yellow-600 hover:bg-yellow-700',
                                         (dialog.type === 'default' ||
                                             dialog.type === 'loading') &&
-                                            'bg-neutral-900 hover:bg-neutral-800'
+                                        'bg-neutral-900 hover:bg-neutral-800'
                                     )}
                                     disabled={isLoading}
                                     onClick={() => {
