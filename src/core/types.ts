@@ -78,10 +78,7 @@ export type NotifinIconComponent = ComponentType<{
 
 export type NotifinThemeClassMap = Record<NotifinType, string>;
 
-export type NotifinThemeIcons = Record<
-    NotifinType,
-    NotifinIconComponent
->;
+export type NotifinThemeIcons = Record<NotifinType, NotifinIconComponent>;
 
 export interface NotifinThemeConfig {
     dialogToneClasses?: Partial<NotifinThemeClassMap>;

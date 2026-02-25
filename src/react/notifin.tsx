@@ -125,10 +125,7 @@ const defaultIconToneClasses: NotifinThemeClassMap = {
     warning: 'border-yellow-300 bg-yellow-50 text-yellow-600',
 };
 
-export function Notifin({
-    showQueueCount = true,
-    theme,
-}: NotifinProps) {
+export function Notifin({ showQueueCount = true, theme }: NotifinProps) {
     const { current, pendingCount } = useNotifinStore();
     const icons = {
         ...defaultIcons,
@@ -195,7 +192,7 @@ function DialogBody({
                 }}
             >
                 <div className="space-y-1.5">
-                    <div className='flex items-center gap-x-2'>
+                    <div className="flex items-center gap-x-2">
                         <div
                             className={cn(
                                 'flex size-7 shrink-0 rounded-full items-center justify-center border',
@@ -214,15 +211,15 @@ function DialogBody({
                         </AlertDialog.Title>
                     </div>
                     <AlertDialog.Description
-                        aria-live={dialog.type === 'error' ? 'assertive' : 'polite'}
+                        aria-live={
+                            dialog.type === 'error' ? 'assertive' : 'polite'
+                        }
                         className="wrap-break-word text-neutral-600 text-sm"
                     >
                         {dialog.description ? (
                             dialog.description
                         ) : (
-                            <VisuallyHidden>
-                                Notification dialog
-                            </VisuallyHidden>
+                            <VisuallyHidden>Notification dialog</VisuallyHidden>
                         )}
                     </AlertDialog.Description>
                 </div>
@@ -257,11 +254,16 @@ function DialogBody({
                                     className={cn(
                                         'inline-flex h-8 w-full items-center justify-center rounded-md px-4 text-sm font-medium text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 sm:w-auto sm:min-w-24',
                                         'disabled:cursor-not-allowed disabled:opacity-60',
-                                        dialog.type === 'error' && 'bg-red-600 hover:bg-red-700',
-                                        dialog.type === 'info' && 'bg-blue-600 hover:bg-blue-700',
-                                        dialog.type === 'success' && 'bg-green-600 hover:bg-green-700',
-                                        dialog.type === 'warning' && 'bg-yellow-600 hover:bg-yellow-700',
-                                        (dialog.type === 'default' || dialog.type === 'loading') &&
+                                        dialog.type === 'error' &&
+                                            'bg-red-600 hover:bg-red-700',
+                                        dialog.type === 'info' &&
+                                            'bg-blue-600 hover:bg-blue-700',
+                                        dialog.type === 'success' &&
+                                            'bg-green-600 hover:bg-green-700',
+                                        dialog.type === 'warning' &&
+                                            'bg-yellow-600 hover:bg-yellow-700',
+                                        (dialog.type === 'default' ||
+                                            dialog.type === 'loading') &&
                                             'bg-neutral-900 hover:bg-neutral-800'
                                     )}
                                     disabled={isLoading}
