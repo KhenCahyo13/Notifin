@@ -30,8 +30,19 @@
         "react",
         "alert-dialog",
         "radix",
-        "notification"
+        "alert",
+        "toast",
+        "notification",
+        "tailwindcss"
     ],
+    "homepage": "https://github.com/KhenCahyo13/Notifin#readme",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/KhenCahyo13/Notifin.git"
+    },
+    "bugs": {
+        "url": "https://github.com/KhenCahyo13/Notifin/issues"
+    },
     "author": "",
     "license": "ISC",
     "packageManager": "pnpm@10.28.0",
