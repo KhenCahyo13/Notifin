@@ -55,6 +55,7 @@ export function Notifin({
 }: NotifinProps) {
     const { current, pendingCount } = useNotifinStore();
     const scheme = useNotifinColorScheme(colorScheme);
+    const schemeTheme = theme?.schemes?.[scheme];
 
     useEffect(() => notifinStore.registerHost(), []);
 
@@ -65,10 +66,12 @@ export function Notifin({
     const dialogToneClasses = {
         ...defaultDialogToneClasses,
         ...theme?.dialogToneClasses,
+        ...schemeTheme?.dialogToneClasses,
     };
     const iconToneClasses = {
         ...defaultIconToneClasses,
         ...theme?.iconToneClasses,
+        ...schemeTheme?.iconToneClasses,
     };
 
     return (
@@ -88,6 +91,7 @@ export function Notifin({
                     iconToneClasses={iconToneClasses}
                     pendingCount={pendingCount}
                     scheme={scheme}
+                    schemeClassName={schemeTheme?.className}
                     showQueueCount={showQueueCount}
                 />
             ) : null}
@@ -143,8 +147,12 @@ function DialogBody({
     iconToneClasses,
     pendingCount,
     scheme,
+    schemeClassName,
     showQueueCount,
-}: NotifinBodyProps & { scheme: 'dark' | 'light' }) {
+}: NotifinBodyProps & {
+    scheme: 'dark' | 'light';
+    schemeClassName?: string;
+}) {
     const Icon = icons[dialog.type];
     const shouldRenderAction = Boolean(dialog.action) || dialog.dismissible;
     const isLoading = dialog.type === 'loading';
@@ -166,7 +174,8 @@ function DialogBody({
                 className={cn(
                     'nf-content',
                     scheme === 'dark' && 'nf-scheme-dark',
-                    toneClasses
+                    toneClasses,
+                    schemeClassName
                 )}
                 onEscapeKeyDown={(event) => {
                     if (!dialog.dismissible || !dialog.allowEscapeClose) {

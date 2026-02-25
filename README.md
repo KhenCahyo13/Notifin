@@ -45,11 +45,11 @@ notifin.error('Upload failed', {
 
 - `colorScheme?: 'system' | 'light' | 'dark'` (default `system`)
 - `showQueueCount?: boolean` (default `true`)
-- `theme?: { icons?, dialogToneClasses?, iconToneClasses? }`
+- `theme?: { icons?, dialogToneClasses?, iconToneClasses?, schemes? }`
 
 ## Custom Theme
 
-You can override per-type visuals with the `theme` prop on `Notifin`. For icons, you can override the default icons using lucide icons or tabler icons, or others icon packages
+You can override per-type visuals with the `theme` prop on `Notifin`. You can also override default icons using any icon package (for example: Lucide, Tabler, Heroicons, custom SVG).
 
 ```tsx
 import { Notifin } from '@khencahyo13/notifin';
@@ -96,6 +96,36 @@ Theme shape:
 - `theme.dialogToneClasses`: partial map of `default | success | error | warning | info | loading` to class string for dialog container.
 - `theme.iconToneClasses`: partial map of `default | success | error | warning | info | loading` to class string for icon chip.
 - `theme.icons`: partial map of `default | success | error | warning | info | loading` to custom React icon component.
+- `theme.schemes.light` / `theme.schemes.dark`: per-color-scheme override for `dialogToneClasses`, `iconToneClasses`, plus optional `className` for content root.
+
+Example per-scheme theme:
+
+```tsx
+<Notifin
+    colorScheme="system"
+    theme={{
+        schemes: {
+            light: {
+                dialogToneClasses: {
+                    error: 'border-rose-300 bg-white text-rose-900',
+                },
+                iconToneClasses: {
+                    error: 'border-rose-400 bg-rose-50 text-rose-700',
+                },
+            },
+            dark: {
+                className: 'ring-1 ring-white/10',
+                dialogToneClasses: {
+                    error: 'border-rose-900 bg-zinc-900 text-rose-200',
+                },
+                iconToneClasses: {
+                    error: 'border-rose-800 bg-rose-950/40 text-rose-300',
+                },
+            },
+        },
+    }}
+/>
+```
 
 With actions:
 
@@ -146,7 +176,7 @@ await notifin.promise(saveProfile(), {
 - No Tailwind setup is required.
 - `@radix-ui/react-alert-dialog` and `@radix-ui/react-visually-hidden` are already included by this package, so no manual install is needed.
 - `Notifin` must be mounted for dialogs to render.
-- Calling `notifin(...)` without a mounted `<Notifin />` will throw an error to prevent silent failures.
+- Calling `notifin` API methods without a mounted `<Notifin />` will throw an error to prevent silent failures.
 - Dialogs are queued; one dialog is shown at a time.
 
 ## License

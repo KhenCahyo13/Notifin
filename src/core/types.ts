@@ -82,10 +82,17 @@ export type NotifinThemeIcons = Record<NotifinType, NotifinIconComponent>;
 
 export type NotifinColorScheme = 'dark' | 'light' | 'system';
 
+export interface NotifinSchemeThemeConfig {
+    className?: string;
+    dialogToneClasses?: Partial<NotifinThemeClassMap>;
+    iconToneClasses?: Partial<NotifinThemeClassMap>;
+}
+
 export interface NotifinThemeConfig {
     dialogToneClasses?: Partial<NotifinThemeClassMap>;
     icons?: Partial<NotifinThemeIcons>;
     iconToneClasses?: Partial<NotifinThemeClassMap>;
+    schemes?: Partial<Record<'dark' | 'light', NotifinSchemeThemeConfig>>;
 }
 
 export interface NotifinProps {

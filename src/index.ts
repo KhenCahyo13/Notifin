@@ -12,6 +12,7 @@ export type {
     NotifinItem,
     NotifinPromiseMessages,
     NotifinProps,
+    NotifinSchemeThemeConfig,
     NotifinShowOptions,
     NotifinThemeClassMap,
     NotifinThemeConfig,
