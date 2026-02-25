@@ -7,6 +7,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { notifinStore } from '../core/store';
 import type {
     NotifinBodyProps,
+    NotifinMotionPreset,
     NotifinProps,
     NotifinThemeClassMap,
     NotifinThemeIcons,
@@ -48,14 +49,24 @@ const defaultIconToneClasses: NotifinThemeClassMap = {
     warning: 'nf-icon-tone-warning',
 };
 
+const motionPresetClasses: Record<NotifinMotionPreset, string> = {
+    bounce: 'nf-motion-bounce',
+    none: 'nf-motion-none',
+    scale: 'nf-motion-scale',
+    slide: 'nf-motion-slide',
+    subtle: 'nf-motion-subtle',
+};
+
 export function Notifin({
     colorScheme,
+    motion = 'subtle',
     showQueueCount = true,
     theme,
 }: NotifinProps) {
     const { current, pendingCount } = useNotifinStore();
     const scheme = useNotifinColorScheme(colorScheme);
     const schemeTheme = theme?.schemes?.[scheme];
+    const motionClassName = motionPresetClasses[motion];
 
     useEffect(() => notifinStore.registerHost(), []);
 
@@ -91,6 +102,7 @@ export function Notifin({
                     iconToneClasses={iconToneClasses}
                     pendingCount={pendingCount}
                     scheme={scheme}
+                    motionClassName={motionClassName}
                     schemeClassName={schemeTheme?.className}
                     showQueueCount={showQueueCount}
                 />
@@ -147,9 +159,11 @@ function DialogBody({
     iconToneClasses,
     pendingCount,
     scheme,
+    motionClassName,
     schemeClassName,
     showQueueCount,
 }: NotifinBodyProps & {
+    motionClassName: string;
     scheme: 'dark' | 'light';
     schemeClassName?: string;
 }) {
@@ -169,10 +183,11 @@ function DialogBody({
 
     return (
         <AlertDialog.Portal>
-            <AlertDialog.Overlay className="nf-overlay" />
+            <AlertDialog.Overlay className={cn('nf-overlay', motionClassName)} />
             <AlertDialog.Content
                 className={cn(
                     'nf-content',
+                    motionClassName,
                     scheme === 'dark' && 'nf-scheme-dark',
                     toneClasses,
                     schemeClassName

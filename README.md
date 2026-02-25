@@ -44,6 +44,7 @@ notifin.error('Upload failed', {
 `Notifin` props:
 
 - `colorScheme?: 'system' | 'light' | 'dark'` (default `system`)
+- `motion?: 'subtle' | 'slide' | 'scale' | 'bounce' | 'none'` (default `subtle`)
 - `showQueueCount?: boolean` (default `true`)
 - `theme?: { icons?, dialogToneClasses?, iconToneClasses?, schemes? }`
 
@@ -97,6 +98,14 @@ Theme shape:
 - `theme.iconToneClasses`: partial map of `default | success | error | warning | info | loading` to class string for icon chip.
 - `theme.icons`: partial map of `default | success | error | warning | info | loading` to custom React icon component.
 - `theme.schemes.light` / `theme.schemes.dark`: per-color-scheme override for `dialogToneClasses`, `iconToneClasses`, plus optional `className` for content root.
+
+Motion presets:
+
+- `subtle`: fade + gentle zoom
+- `slide`: fade + slight vertical slide
+- `scale`: fade + stronger scale
+- `bounce`: fade + spring-like bounce
+- `none`: no animation
 
 Example per-scheme theme:
 

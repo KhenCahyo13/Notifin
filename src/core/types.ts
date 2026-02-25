@@ -81,6 +81,12 @@ export type NotifinThemeClassMap = Record<NotifinType, string>;
 export type NotifinThemeIcons = Record<NotifinType, NotifinIconComponent>;
 
 export type NotifinColorScheme = 'dark' | 'light' | 'system';
+export type NotifinMotionPreset =
+    | 'bounce'
+    | 'none'
+    | 'scale'
+    | 'slide'
+    | 'subtle';
 
 export interface NotifinSchemeThemeConfig {
     className?: string;
@@ -97,6 +103,7 @@ export interface NotifinThemeConfig {
 
 export interface NotifinProps {
     colorScheme?: NotifinColorScheme;
+    motion?: NotifinMotionPreset;
     showQueueCount?: boolean;
     theme?: NotifinThemeConfig;
 }

@@ -10,6 +10,7 @@ export type {
     NotifinFn,
     NotifinIconComponent,
     NotifinItem,
+    NotifinMotionPreset,
     NotifinPromiseMessages,
     NotifinProps,
     NotifinSchemeThemeConfig,
