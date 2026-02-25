@@ -5,9 +5,9 @@ Function-first alert dialog library for React, using Radix Alert Dialog primitiv
 ## Install
 
 ```bash
-pnpm add @khencahyo/notifin
-# or: npm i @khencahyo/notifin
-# or: yarn add @khencahyo/notifin
+pnpm add @khencahyo13/notifin
+# or: npm i @khencahyo13/notifin
+# or: yarn add @khencahyo13/notifin
 ```
 
 ## Usage
@@ -15,7 +15,7 @@ pnpm add @khencahyo/notifin
 Mount host once in app root:
 
 ```tsx
-import { Notifin } from '@khencahyo/notifin';
+import { Notifin } from '@khencahyo13/notifin';
 
 export function AppLayout() {
     return (
@@ -30,7 +30,7 @@ export function AppLayout() {
 Call notifications anywhere:
 
 ```tsx
-import { notifin } from '@khencahyo/notifin';
+import { notifin } from '@khencahyo13/notifin';
 
 notifin('Saved draft');
 notifin.success('Profile updated');
@@ -49,7 +49,7 @@ notifin.error('Upload failed', {
 You can override per-type visuals with the `theme` prop on `Notifin`.
 
 ```tsx
-import { Notifin } from '@khencahyo/notifin';
+import { Notifin } from '@khencahyo13/notifin';
 
 function RocketIcon({ className }: { className?: string }) {
     return (
@@ -152,7 +152,7 @@ export default {
     content: [
         './index.html',
         './src/**/*.{js,ts,jsx,tsx}',
-        './node_modules/@khencahyo/notifin/dist/**/*.{js,mjs,cjs}',
+        './node_modules/@khencahyo13/notifin/dist/**/*.{js,mjs,cjs}',
     ],
     plugins: [require('tw-animate-css')],
 };
