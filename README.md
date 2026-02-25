@@ -157,3 +157,43 @@ export default {
     plugins: [require('tw-animate-css')],
 };
 ```
+
+```css
+/* app.css / index.css (Tailwind v4) */
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@source '../node_modules/@khencahyo13/notifin/dist/**/*.js';
+```
+
+## License
+
+This project is licensed under the `ISC` license.
+
+## Contributing
+
+Contributions are welcome.
+
+1. Fork this repository.
+2. Create a feature/fix branch.
+3. Make your changes with tests and documentation updates.
+4. Open a pull request with clear context and change summary.
+
+Before submitting, run:
+
+```bash
+pnpm lint
+pnpm typecheck
+pnpm test
+pnpm build
+```
+
+## Bug Report
+
+If you find a bug, please open an issue and include:
+
+- package version (`@khencahyo13/notifin`)
+- React version
+- Tailwind version and config (`v3` or `v4`)
+- minimal reproduction (repo or code snippet)
+- expected vs actual behavior
+- screenshots/error logs (if available)
