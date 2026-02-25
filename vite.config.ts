@@ -19,7 +19,14 @@ export default defineConfig({
                 format === 'es' ? 'notifin.js' : 'notifin.cjs',
         },
         rollupOptions: {
-            external: ['react', 'react-dom'],
+            external: [
+                'react',
+                'react-dom',
+                '@radix-ui/react-alert-dialog',
+                '@radix-ui/react-visually-hidden',
+                'clsx',
+                'tailwind-merge',
+            ],
             output: {
                 assetFileNames: (assetInfo) => {
                     if (assetInfo.name === 'style.css') {

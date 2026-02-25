@@ -1,9 +1,8 @@
 import '../styles/index.css';
 
-import { useEffect } from 'react';
-
 import * as AlertDialog from '@radix-ui/react-alert-dialog';
 import { Root as VisuallyHidden } from '@radix-ui/react-visually-hidden';
+import { useEffect } from 'react';
 
 import { notifinStore } from '../core/store';
 import type {
