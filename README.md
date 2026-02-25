@@ -1,11 +1,13 @@
-# notifin
+# Notifin
 
 Function-first alert dialog library for React, using Radix Alert Dialog primitives with Tailwind-based UI classes.
 
 ## Install
 
 ```bash
-pnpm add notifin
+pnpm add @khencahyo/notifin
+# or: npm i @khencahyo/notifin
+# or: yarn add @khencahyo/notifin
 ```
 
 ## Usage
@@ -36,6 +38,61 @@ notifin.error('Upload failed', {
     description: 'Please retry in a few seconds.',
 });
 ```
+
+`Notifin` props:
+
+- `showQueueCount?: boolean` (default `true`)
+- `theme?: { icons?, dialogToneClasses?, iconToneClasses? }`
+
+## Custom Theme
+
+You can override per-type visuals with the `theme` prop on `Notifin`.
+
+```tsx
+import { Notifin } from '@khencahyo/notifin';
+
+function RocketIcon({ className }: { className?: string }) {
+    return (
+        <svg
+            className={className}
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+        >
+            <path d="M5 19c2.5 0 4.5-2 4.5-4.5v-1l5-5c2-2 4.5-2 5.5-2-.1 1-.1 3.5-2 5.5l-5 5h-1C9 17 7 19 7 21" />
+            <circle cx="14.5" cy="9.5" r="1.5" />
+        </svg>
+    );
+}
+
+export function AppLayout() {
+    return (
+        <Notifin
+            theme={{
+                dialogToneClasses: {
+                    success:
+                        'border-emerald-300 bg-emerald-50 text-emerald-950',
+                    error: 'border-rose-300 bg-rose-50 text-rose-950',
+                },
+                iconToneClasses: {
+                    success:
+                        'border-emerald-400 bg-emerald-100 text-emerald-700',
+                    error: 'border-rose-400 bg-rose-100 text-rose-700',
+                },
+                icons: {
+                    success: RocketIcon,
+                },
+            }}
+        />
+    );
+}
+```
+
+Theme shape:
+
+- `theme.dialogToneClasses`: partial map of `default | success | error | warning | info | loading` to Tailwind class string for dialog container.
+- `theme.iconToneClasses`: partial map of `default | success | error | warning | info | loading` to Tailwind class string for icon chip.
+- `theme.icons`: partial map of `default | success | error | warning | info | loading` to custom React icon component.
 
 With actions:
 
@@ -80,7 +137,23 @@ await notifin.promise(saveProfile(), {
 ## Notes
 
 - Powered by `@radix-ui/react-alert-dialog`.
-- Uses Tailwind animation utility classes (`animate-in/out`, `fade`, `zoom`), so install `tw-animate-css` (or equivalent plugin) in consumer app for full motion.
+- Required for consumer app: `tailwindcss` (this library styles are pure Tailwind utility classes).
+- Required for consumer app: `tw-animate-css` (or equivalent) for `animate-in/out`, `fade`, and `zoom` animation classes.
+- `@radix-ui/react-alert-dialog` and `@radix-ui/react-visually-hidden` are already included by this package, so no manual install is needed.
+- Make sure your Tailwind config scans this package path in `node_modules`.
 - `Notifin` must be mounted for dialogs to render.
 - Dialogs are queued; one dialog is shown at a time.
-- If your Tailwind setup does not scan `node_modules`, include this package path in your scan/source config so classes are generated.
+
+Example Tailwind content/source setup:
+
+```ts
+// tailwind.config.ts (Tailwind v3)
+export default {
+    content: [
+        './index.html',
+        './src/**/*.{js,ts,jsx,tsx}',
+        './node_modules/@khencahyo/notifin/dist/**/*.{js,mjs,cjs}',
+    ],
+    plugins: [require('tw-animate-css')],
+};
+```

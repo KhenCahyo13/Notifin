@@ -1,7 +1,7 @@
 {
     "name": "@khencahyo/notifin",
     "version": "1.0.0",
-    "description": "Function-first alert dialog notification library built with Radix",
+    "description": "Function-first alert dialog library for React, using Radix Alert Dialog primitives with Tailwind-based UI classes.",
     "type": "module",
     "main": "./dist/notifin.cjs",
     "module": "./dist/notifin.js",
