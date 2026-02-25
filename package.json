@@ -28,6 +28,7 @@
         "prettier": "prettier --check .",
         "prettier:fix": "prettier --write .",
         "test": "vitest run",
+        "test:e2e": "vitest run src/e2e/consumer.test.ts",
         "test:watch": "vitest",
         "typecheck": "tsc --noEmit"
     },

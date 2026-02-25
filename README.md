@@ -166,6 +166,8 @@ Before submitting, run:
 pnpm lint
 pnpm typecheck
 pnpm test
+pnpm prettier:fix
+pnpm test:e2e
 pnpm build
 ```
 
