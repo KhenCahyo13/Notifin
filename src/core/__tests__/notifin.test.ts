@@ -22,6 +22,7 @@ describe('notifin core flow', () => {
     it('queues dialogs and promotes next after dismiss', async () => {
         vi.useFakeTimers();
         const { notifin, notifinStore } = await loadModules();
+        const unregisterHost = notifinStore.registerHost();
 
         notifin.success('First');
         notifin.error('Second');
@@ -34,11 +35,13 @@ describe('notifin core flow', () => {
 
         expect(notifinStore.getSnapshot().current?.title).toBe('Second');
         expect(notifinStore.getSnapshot().pendingCount).toBe(0);
+        unregisterHost();
     });
 
     it('auto-dismisses active dialog when duration is set', async () => {
         vi.useFakeTimers();
         const { notifin, notifinStore } = await loadModules();
+        const unregisterHost = notifinStore.registerHost();
 
         notifin('Autoclose', { duration: 50 });
         expect(notifinStore.getSnapshot().current?.title).toBe('Autoclose');
@@ -48,10 +51,12 @@ describe('notifin core flow', () => {
 
         expect(notifinStore.getSnapshot().current).toBeNull();
         expect(notifinStore.getSnapshot().pendingCount).toBe(0);
+        unregisterHost();
     });
 
     it('updates loading dialog on promise success', async () => {
         const { notifin, notifinStore } = await loadModules();
+        const unregisterHost = notifinStore.registerHost();
 
         await expect(
             notifin.promise(Promise.resolve('ok'), {
@@ -63,5 +68,14 @@ describe('notifin core flow', () => {
 
         expect(notifinStore.getSnapshot().current?.type).toBe('success');
         expect(notifinStore.getSnapshot().current?.title).toBe('Done: ok');
+        unregisterHost();
+    });
+
+    it('throws when notifin is called without mounted host', async () => {
+        const { notifin } = await loadModules();
+
+        expect(() => notifin('No host')).toThrow(
+            '[notifin] <Notifin /> is not mounted. Render <Notifin /> once in your app root before calling notifin(...).'
+        );
     });
 });

@@ -26,10 +26,23 @@ class NotifinStore {
     };
     private removeTimeouts = new Map<string, ReturnType<typeof setTimeout>>();
     private durationTimeouts = new Map<string, ReturnType<typeof setTimeout>>();
+    private hostCount = 0;
 
     subscribe(listener: Listener) {
         this.listeners.add(listener);
         return () => this.listeners.delete(listener);
+    }
+
+    registerHost() {
+        this.hostCount += 1;
+
+        return () => {
+            this.hostCount = Math.max(0, this.hostCount - 1);
+        };
+    }
+
+    hasHost() {
+        return this.hostCount > 0;
     }
 
     getSnapshot(): NotifinSnapshot {

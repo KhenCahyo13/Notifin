@@ -1,0 +1,93 @@
+.nf-overlay[data-state='open'] {
+    animation: nf-fade-in 200ms ease-out both;
+}
+
+.nf-overlay[data-state='closed'] {
+    animation: nf-fade-out 200ms ease-in both;
+}
+
+.nf-content[data-state='open'] {
+    animation:
+        nf-fade-in 200ms ease-out both,
+        nf-zoom-in 200ms ease-out both,
+        nf-slide-in-top 200ms ease-out both;
+}
+
+.nf-content[data-state='closed'] {
+    animation:
+        nf-fade-out 200ms ease-in both,
+        nf-zoom-out 200ms ease-in both,
+        nf-slide-out-top 200ms ease-in both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .nf-overlay,
+    .nf-content,
+    .nf-icon-spin {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+@keyframes nf-fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes nf-fade-out {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes nf-zoom-in {
+    from {
+        transform: translate(-50%, -50%) scale(0.95);
+    }
+    to {
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@keyframes nf-zoom-out {
+    from {
+        transform: translate(-50%, -50%) scale(1);
+    }
+    to {
+        transform: translate(-50%, -50%) scale(0.95);
+    }
+}
+
+@keyframes nf-slide-in-top {
+    from {
+        transform: translate(-50%, calc(-50% - 8px));
+    }
+    to {
+        transform: translate(-50%, -50%);
+    }
+}
+
+@keyframes nf-slide-out-top {
+    from {
+        transform: translate(-50%, -50%);
+    }
+    to {
+        transform: translate(-50%, calc(-50% - 8px));
+    }
+}
+
+@keyframes nf-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

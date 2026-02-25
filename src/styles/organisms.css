@@ -1,0 +1,33 @@
+.nf-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    background: var(--nf-overlay-bg);
+}
+
+.nf-content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 50;
+    width: var(--nf-content-width);
+    max-height: var(--nf-content-max-height);
+    overflow-y: auto;
+    transform: translate(-50%, -50%);
+    border: 1px solid transparent;
+    border-radius: var(--nf-content-radius);
+    padding: var(--nf-content-padding);
+    box-shadow: var(--nf-content-shadow);
+    outline: none;
+}
+
+.nf-header {
+    display: grid;
+    gap: 0.375rem;
+}
+
+.nf-footer {
+    margin-top: 1rem;
+    display: grid;
+    gap: 0.5rem;
+}

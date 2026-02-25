@@ -7,6 +7,16 @@ import type {
     NotifinUpdateOptions,
 } from './types';
 
+function assertHostMounted() {
+    if (notifinStore.hasHost()) {
+        return;
+    }
+
+    throw new Error(
+        '[notifin] <Notifin /> is not mounted. Render <Notifin /> once in your app root before calling notifin(...).'
+    );
+}
+
 function normalizeInput(input: NotifinShowOptions | string) {
     if (typeof input === 'string') {
         return {
@@ -33,6 +43,7 @@ function notify(
     title: string,
     options?: NotifinShowOptions
 ) {
+    assertHostMounted();
     return notifinStore.create(type, title, options);
 }
 
@@ -40,7 +51,10 @@ export const notifin: NotifinFn = Object.assign(
     (title: string, options?: NotifinShowOptions) =>
         notify('default', title, options),
     {
-        dismiss: (id?: string) => notifinStore.dismiss(id),
+        dismiss: (id?: string) => {
+            assertHostMounted();
+            notifinStore.dismiss(id);
+        },
         error: (title: string, options?: NotifinShowOptions) =>
             notify('error', title, options),
         info: (title: string, options?: NotifinShowOptions) =>
@@ -93,6 +107,7 @@ export const notifin: NotifinFn = Object.assign(
         success: (title: string, options?: NotifinShowOptions) =>
             notify('success', title, options),
         update: (id: string, options: NotifinUpdateOptions) => {
+            assertHostMounted();
             notifinStore.update(id, {
                 ...options,
                 title: options.title,

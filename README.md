@@ -1,6 +1,6 @@
 # Notifin
 
-Function-first alert dialog library for React, using Radix Alert Dialog primitives with Tailwind-based UI classes.
+Function-first alert dialog library for React, built on Radix Alert Dialog primitives with bundled styles and optional theme overrides.
 
 ## Install
 
@@ -9,6 +9,8 @@ pnpm add @khencahyo13/notifin
 # or: npm i @khencahyo13/notifin
 # or: yarn add @khencahyo13/notifin
 ```
+
+Peer dependency: `react` and `react-dom` version `>=18`.
 
 ## Usage
 
@@ -90,8 +92,8 @@ export function AppLayout() {
 
 Theme shape:
 
-- `theme.dialogToneClasses`: partial map of `default | success | error | warning | info | loading` to Tailwind class string for dialog container.
-- `theme.iconToneClasses`: partial map of `default | success | error | warning | info | loading` to Tailwind class string for icon chip.
+- `theme.dialogToneClasses`: partial map of `default | success | error | warning | info | loading` to class string for dialog container.
+- `theme.iconToneClasses`: partial map of `default | success | error | warning | info | loading` to class string for icon chip.
 - `theme.icons`: partial map of `default | success | error | warning | info | loading` to custom React icon component.
 
 With actions:
@@ -124,12 +126,12 @@ await notifin.promise(saveProfile(), {
 
 ## API
 
-- `notifin(title, options?)`
-- `notifin.success(title, options?)`
-- `notifin.error(title, options?)`
-- `notifin.warning(title, options?)`
-- `notifin.info(title, options?)`
-- `notifin.loading(title, options?)`
+- `notifin(title, options?)` -> returns `id`
+- `notifin.success(title, options?)` -> returns `id`
+- `notifin.error(title, options?)` -> returns `id`
+- `notifin.warning(title, options?)` -> returns `id`
+- `notifin.info(title, options?)` -> returns `id`
+- `notifin.loading(title, options?)` -> returns `id`
 - `notifin.update(id, options)`
 - `notifin.dismiss(id?)`
 - `notifin.promise(promise, messages)`
@@ -137,33 +139,13 @@ await notifin.promise(saveProfile(), {
 ## Notes
 
 - Powered by `@radix-ui/react-alert-dialog`.
-- Required for consumer app: `tailwindcss` (this library styles are pure Tailwind utility classes).
-- Required for consumer app: `tw-animate-css` (or equivalent) for `animate-in/out`, `fade`, and `zoom` animation classes.
+- Styles are injected automatically when you import from `@khencahyo13/notifin`.
+- Optional: import `@khencahyo13/notifin/style.css` manually if you prefer explicit CSS loading.
+- No Tailwind setup is required.
 - `@radix-ui/react-alert-dialog` and `@radix-ui/react-visually-hidden` are already included by this package, so no manual install is needed.
-- Make sure your Tailwind config scans this package path in `node_modules`.
 - `Notifin` must be mounted for dialogs to render.
+- Calling `notifin(...)` without a mounted `<Notifin />` will throw an error to prevent silent failures.
 - Dialogs are queued; one dialog is shown at a time.
-
-Example Tailwind content/source setup:
-
-```ts
-// tailwind.config.ts (Tailwind v3)
-export default {
-    content: [
-        './index.html',
-        './src/**/*.{js,ts,jsx,tsx}',
-        './node_modules/@khencahyo13/notifin/dist/**/*.{js,mjs,cjs}',
-    ],
-    plugins: [require('tw-animate-css')],
-};
-```
-
-```css
-/* app.css / index.css (Tailwind v4) */
-@import 'tailwindcss';
-@import 'tw-animate-css';
-@source '../node_modules/@khencahyo13/notifin/dist/**/*.js';
-```
 
 ## License
 
@@ -193,7 +175,6 @@ If you find a bug, please open an issue and include:
 
 - package version (`@khencahyo13/notifin`)
 - React version
-- Tailwind version and config (`v3` or `v4`)
 - minimal reproduction (repo or code snippet)
 - expected vs actual behavior
 - screenshots/error logs (if available)
