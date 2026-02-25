@@ -48,7 +48,7 @@ notifin.error('Upload failed', {
 
 ## Custom Theme
 
-You can override per-type visuals with the `theme` prop on `Notifin`.
+You can override per-type visuals with the `theme` prop on `Notifin`. For icons, you can override the default icons using lucide icons or tabler icons, or others icon packages
 
 ```tsx
 import { Notifin } from '@khencahyo13/notifin';
