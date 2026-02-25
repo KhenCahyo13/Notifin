@@ -11,14 +11,10 @@
             "types": "./dist/index.d.ts",
             "import": "./dist/notifin.js",
             "require": "./dist/notifin.cjs"
-        },
-        "./styles.css": "./dist/notifin.css"
+        }
     },
     "files": [
         "dist"
-    ],
-    "sideEffects": [
-        "**/*.css"
     ],
     "scripts": {
         "build": "vite build",
@@ -41,7 +37,9 @@
     "packageManager": "pnpm@10.28.0",
     "dependencies": {
         "@radix-ui/react-alert-dialog": "^1.1.15",
-        "lucide-react": "^0.575.0"
+        "@radix-ui/react-visually-hidden": "^1.2.4",
+        "clsx": "^2.1.1",
+        "tailwind-merge": "^3.5.0"
     },
     "devDependencies": {
         "@eslint/js": "^9.39.3",

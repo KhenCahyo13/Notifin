@@ -1,6 +1,6 @@
 # notifin
 
-Function-first alert dialog library for React, using Radix Alert Dialog primitives.
+Function-first alert dialog library for React, using Radix Alert Dialog primitives with Tailwind-based UI classes.
 
 ## Install
 
@@ -8,23 +8,17 @@ Function-first alert dialog library for React, using Radix Alert Dialog primitiv
 pnpm add notifin
 ```
 
-Import styles once:
-
-```ts
-import 'notifin/styles.css';
-```
-
 ## Usage
 
 Mount host once in app root:
 
 ```tsx
-import { NotifinDialogHost } from 'notifin';
+import { Notifin } from '@khencahyo/notifin';
 
 export function AppLayout() {
     return (
         <>
-            <NotifinDialogHost />
+            <Notifin />
             {/* your app */}
         </>
     );
@@ -34,7 +28,7 @@ export function AppLayout() {
 Call notifications anywhere:
 
 ```tsx
-import { notifin } from 'notifin';
+import { notifin } from '@khencahyo/notifin';
 
 notifin('Saved draft');
 notifin.success('Profile updated');
@@ -86,5 +80,7 @@ await notifin.promise(saveProfile(), {
 ## Notes
 
 - Powered by `@radix-ui/react-alert-dialog`.
-- `NotifinDialogHost` must be mounted for dialogs to render.
+- Uses Tailwind animation utility classes (`animate-in/out`, `fade`, `zoom`), so install `tw-animate-css` (or equivalent plugin) in consumer app for full motion.
+- `Notifin` must be mounted for dialogs to render.
 - Dialogs are queued; one dialog is shown at a time.
+- If your Tailwind setup does not scan `node_modules`, include this package path in your scan/source config so classes are generated.
