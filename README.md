@@ -43,6 +43,7 @@ notifin.error('Upload failed', {
 
 `Notifin` props:
 
+- `colorScheme?: 'system' | 'light' | 'dark'` (default `system`)
 - `showQueueCount?: boolean` (default `true`)
 - `theme?: { icons?, dialogToneClasses?, iconToneClasses? }`
 
@@ -141,6 +142,7 @@ await notifin.promise(saveProfile(), {
 - Powered by `@radix-ui/react-alert-dialog`.
 - Styles are injected automatically when you import from `@khencahyo13/notifin`.
 - Optional: import `@khencahyo13/notifin/style.css` manually if you prefer explicit CSS loading.
+- Built-in dark theme support via `colorScheme` (`system`, `light`, `dark`).
 - No Tailwind setup is required.
 - `@radix-ui/react-alert-dialog` and `@radix-ui/react-visually-hidden` are already included by this package, so no manual install is needed.
 - `Notifin` must be mounted for dialogs to render.

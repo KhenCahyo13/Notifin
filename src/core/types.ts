@@ -80,6 +80,8 @@ export type NotifinThemeClassMap = Record<NotifinType, string>;
 
 export type NotifinThemeIcons = Record<NotifinType, NotifinIconComponent>;
 
+export type NotifinColorScheme = 'dark' | 'light' | 'system';
+
 export interface NotifinThemeConfig {
     dialogToneClasses?: Partial<NotifinThemeClassMap>;
     icons?: Partial<NotifinThemeIcons>;
@@ -87,6 +89,7 @@ export interface NotifinThemeConfig {
 }
 
 export interface NotifinProps {
+    colorScheme?: NotifinColorScheme;
     showQueueCount?: boolean;
     theme?: NotifinThemeConfig;
 }

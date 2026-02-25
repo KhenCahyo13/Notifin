@@ -6,6 +6,7 @@ export { notifin } from './core/notifin';
 export type {
     NotifinAction,
     NotifinBodyProps,
+    NotifinColorScheme,
     NotifinFn,
     NotifinIconComponent,
     NotifinItem,

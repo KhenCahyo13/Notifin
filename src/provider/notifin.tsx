@@ -2,7 +2,7 @@ import '../styles/index.css';
 
 import * as AlertDialog from '@radix-ui/react-alert-dialog';
 import { Root as VisuallyHidden } from '@radix-ui/react-visually-hidden';
-import { useEffect } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import { notifinStore } from '../core/store';
 import type {
@@ -48,8 +48,13 @@ const defaultIconToneClasses: NotifinThemeClassMap = {
     warning: 'nf-icon-tone-warning',
 };
 
-export function Notifin({ showQueueCount = true, theme }: NotifinProps) {
+export function Notifin({
+    colorScheme,
+    showQueueCount = true,
+    theme,
+}: NotifinProps) {
     const { current, pendingCount } = useNotifinStore();
+    const scheme = useNotifinColorScheme(colorScheme);
 
     useEffect(() => notifinStore.registerHost(), []);
 
@@ -82,11 +87,53 @@ export function Notifin({ showQueueCount = true, theme }: NotifinProps) {
                     icons={icons}
                     iconToneClasses={iconToneClasses}
                     pendingCount={pendingCount}
+                    scheme={scheme}
                     showQueueCount={showQueueCount}
                 />
             ) : null}
         </AlertDialog.Root>
     );
+}
+
+function useNotifinColorScheme(colorScheme: NotifinProps['colorScheme']) {
+    const resolvedColorScheme = colorScheme ?? 'system';
+    const [prefersDark, setPrefersDark] = useState(
+        () =>
+            typeof window !== 'undefined' &&
+            typeof window.matchMedia === 'function' &&
+            window.matchMedia('(prefers-color-scheme: dark)').matches
+    );
+
+    useEffect(() => {
+        if (
+            resolvedColorScheme !== 'system' ||
+            typeof window === 'undefined' ||
+            typeof window.matchMedia !== 'function'
+        ) {
+            return;
+        }
+
+        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        const onChange = (event: MediaQueryListEvent) =>
+            setPrefersDark(event.matches);
+
+        setPrefersDark(mediaQuery.matches);
+        mediaQuery.addEventListener('change', onChange);
+
+        return () => mediaQuery.removeEventListener('change', onChange);
+    }, [resolvedColorScheme]);
+
+    return useMemo(() => {
+        if (resolvedColorScheme === 'dark') {
+            return 'dark';
+        }
+
+        if (resolvedColorScheme === 'light') {
+            return 'light';
+        }
+
+        return prefersDark ? 'dark' : 'light';
+    }, [prefersDark, resolvedColorScheme]);
 }
 
 function DialogBody({
@@ -95,8 +142,9 @@ function DialogBody({
     icons,
     iconToneClasses,
     pendingCount,
+    scheme,
     showQueueCount,
-}: NotifinBodyProps) {
+}: NotifinBodyProps & { scheme: 'dark' | 'light' }) {
     const Icon = icons[dialog.type];
     const shouldRenderAction = Boolean(dialog.action) || dialog.dismissible;
     const isLoading = dialog.type === 'loading';
@@ -115,7 +163,11 @@ function DialogBody({
         <AlertDialog.Portal>
             <AlertDialog.Overlay className="nf-overlay" />
             <AlertDialog.Content
-                className={cn('nf-content', toneClasses)}
+                className={cn(
+                    'nf-content',
+                    scheme === 'dark' && 'nf-scheme-dark',
+                    toneClasses
+                )}
                 onEscapeKeyDown={(event) => {
                     if (!dialog.dismissible || !dialog.allowEscapeClose) {
                         event.preventDefault();
