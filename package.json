@@ -41,7 +41,7 @@
         "notification",
         "tailwindcss"
     ],
-    "homepage": "https://notifin-react.vercel.app/",
+    "homepage": "https://notifin-react.vercel.app",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/KhenCahyo13/Notifin-React"
