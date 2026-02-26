@@ -5,9 +5,9 @@ Function-first alert dialog library for React, built on Radix Alert Dialog primi
 ## Install
 
 ```bash
-pnpm add @khencahyo13/notifin
-# or: npm i @khencahyo13/notifin
-# or: yarn add @khencahyo13/notifin
+pnpm add @khencahyo13/notifin-react
+# or: npm i @khencahyo13/notifin-react
+# or: yarn add @khencahyo13/notifin-react
 ```
 
 Peer dependency: `react` and `react-dom` version `>=18`.
@@ -17,7 +17,7 @@ Peer dependency: `react` and `react-dom` version `>=18`.
 Mount host once in app root:
 
 ```tsx
-import { Notifin } from '@khencahyo13/notifin';
+import { Notifin } from '@khencahyo13/notifin-react';
 
 export function AppLayout() {
     return (
@@ -32,7 +32,7 @@ export function AppLayout() {
 Call notifications anywhere:
 
 ```tsx
-import { notifin } from '@khencahyo13/notifin';
+import { notifin } from '@khencahyo13/notifin-react';
 
 notifin('Saved draft');
 notifin.success('Profile updated');
@@ -53,7 +53,7 @@ notifin.error('Upload failed', {
 You can override per-type visuals with the `theme` prop on `Notifin`. You can also override default icons using any icon package (for example: Lucide, Tabler, Heroicons, custom SVG).
 
 ```tsx
-import { Notifin } from '@khencahyo13/notifin';
+import { Notifin } from '@khencahyo13/notifin-react';
 
 function RocketIcon({ className }: { className?: string }) {
     return (
@@ -179,8 +179,8 @@ await notifin.promise(saveProfile(), {
 ## Notes
 
 - Powered by `@radix-ui/react-alert-dialog`.
-- Styles are injected automatically when you import from `@khencahyo13/notifin`.
-- Optional: import `@khencahyo13/notifin/style.css` manually if you prefer explicit CSS loading.
+- Styles are injected automatically when you import from `@khencahyo13/notifin-react`.
+- Optional: import `@khencahyo13/notifin-react/style.css` manually if you prefer explicit CSS loading.
 - Built-in dark theme support via `colorScheme` (`system`, `light`, `dark`).
 - No Tailwind setup is required.
 - `@radix-ui/react-alert-dialog` and `@radix-ui/react-visually-hidden` are already included by this package, so no manual install is needed.
@@ -216,7 +216,7 @@ pnpm build
 
 If you find a bug, please open an issue and include:
 
-- package version (`@khencahyo13/notifin`)
+- package version (`@khencahyo13/notifin-react`)
 - React version
 - minimal reproduction (repo or code snippet)
 - expected vs actual behavior
