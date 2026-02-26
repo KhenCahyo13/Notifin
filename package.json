@@ -41,13 +41,13 @@
         "notification",
         "tailwindcss"
     ],
-    "homepage": "https://github.com/KhenCahyo13/Notifin#readme",
+    "homepage": "https://notifin-react.vercel.app/",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/KhenCahyo13/Notifin.git"
+        "url": "git+https://github.com/KhenCahyo13/Notifin-React"
     },
     "bugs": {
-        "url": "https://github.com/KhenCahyo13/Notifin/issues"
+        "url": "https://github.com/KhenCahyo13/Notifin-React/issues"
     },
     "author": "",
     "license": "ISC",
